@@ -41,6 +41,21 @@ S32 readAllHexFile(CHAR* path, UCHAR** buff)
     return s32Len;
 }
 
+S32 writeAllHexFile(CHAR* path, UCHAR* buff, S32 s32Length)
+{
+    FILE * fd = NULL;
+    S32 s32Len = 0;
+    fd = fopen(path, "wb");
+    if (!fd)
+    {
+        printf("open %s fail\n", path);
+        return FALSE;
+    }
+    s32Len = fwrite(buff, 1, s32Length, fd);
+    fclose(fd);
+    return s32Len;
+}
+
 S32 freeAllHexFileBuff(UCHAR** buff)
 {
     free(*buff);

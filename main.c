@@ -7,6 +7,7 @@ int main(void)
     S32 i;
     S32 s32Ret;
     S32 s32Length;
+    S32 s32WriteLength;
     UCHAR* buff;
     const CHAR* path = "test.bin";
 
@@ -34,6 +35,8 @@ int main(void)
             printf("0x%02x, ", buff[i]);
         }
         printf("\n");
+        s32WriteLength = writeAllHexFile("test2.bin", buff, s32Length);
+        printf("writeAllHexFile length: %d\n", s32WriteLength);
         freeAllHexFileBuff(&buff);
     }
     else
