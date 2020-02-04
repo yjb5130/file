@@ -8,7 +8,9 @@ int main(void)
     S32 s32Ret;
     S32 s32Length;
     S32 s32WriteLength;
+    S32 s32ReadLength;
     UCHAR* buff;
+    UCHAR buffer[1024];
     const CHAR* path = "test.bin";
 
     s32Ret = checkFileExist(path);
@@ -42,6 +44,27 @@ int main(void)
     else
     {
         printf("readAllHexFile fail: %s\n", path);
+    }
+
+    s32Length = getHexFileLength(path);
+    printf("getHexFileLength: %d\n", s32Length);
+
+    s32ReadLength = readHexFile(path, buffer, s32Length);
+    printf("readHexFile s32ReadLength: %d\n", s32ReadLength);
+    if (s32ReadLength > 0)
+    {
+        printf("readHexFile buffer:");
+        for (i = 0; i < s32ReadLength; i++)
+        {
+            if (i % 0x10 == 0)
+            {
+                printf("\n");
+            }
+            printf("0x%02x, ", buffer[i]);
+        }
+        printf("\n");
+        s32WriteLength = writeHexFile("test3.bin", buffer, s32Length);
+        printf("writeHexFile length: %d\n", s32WriteLength);
     }
     return 0;
 }

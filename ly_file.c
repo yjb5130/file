@@ -61,3 +61,51 @@ S32 freeAllHexFileBuff(UCHAR** buff)
     free(*buff);
     *buff = NULL;
 }
+
+S32 getHexFileLength(CHAR* path)
+{
+    FILE * fd = NULL;
+    S32 s32Len = 0;
+    fd = fopen(path, "rb");
+    if (!fd)
+    {
+        printf("open %s fail\n", path);
+        return -1;
+    }
+    fseek(fd, 0, SEEK_END);
+    s32Len = ftell(fd);
+    fclose(fd);
+    return s32Len;
+}
+
+S32 readHexFile(CHAR* path, UCHAR* buff, U32 length)
+{
+    FILE * fd = NULL;
+    S32 s32Len = 0;
+    fd = fopen(path, "rb");
+    if (!fd)
+    {
+        printf("open %s fail\n", path);
+        return FALSE;
+    }
+
+    s32Len = fread(buff, 1, length, fd);
+    fclose(fd);
+    return s32Len;
+}
+
+S32 writeHexFile(CHAR* path, UCHAR* buff, U32 length)
+{
+    FILE * fd = NULL;
+    S32 s32Len = 0;
+    fd = fopen(path, "wb");
+    if (!fd)
+    {
+        printf("open %s fail\n", path);
+        return FALSE;
+    }
+
+    s32Len = fwrite(buff, 1, length, fd);
+    fclose(fd);
+    return s32Len;
+}
