@@ -3,10 +3,10 @@
 
 #include "ly_type.h"
 
-extern S32 checkFileExist(CHAR* path);
+extern BOOL checkFileExist(CHAR* path);
 extern S32 readAllHexFile(CHAR* path, UCHAR** buff);
 extern S32 writeAllHexFile(CHAR* path, UCHAR* buff);
-extern S32 freeAllHexFileBuff(UCHAR* buff);
+extern VOID freeAllHexFileBuff(UCHAR* buff);
 
 extern S32 getHexFileLength(CHAR* path);
 extern S32 readHexFile(CHAR* path, UCHAR* buff, U32 length);

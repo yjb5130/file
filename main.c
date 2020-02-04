@@ -4,13 +4,13 @@
 
 int main(void)
 {
-    S32 i;
-    S32 s32Ret;
-    S32 s32Length;
-    S32 s32WriteLength;
-    S32 s32ReadLength;
-    UCHAR* buff;
-    UCHAR buffer[1024];
+    S32 i = 0;
+    BOOL s32Ret = FALSE;
+    S32 s32Length = 0;
+    S32 s32WriteLength = 0;
+    S32 s32ReadLength = 0;
+    UCHAR* pBuff;
+    UCHAR buff[1024];
     const CHAR* path = "test.bin";
 
     s32Ret = checkFileExist(path);
@@ -23,23 +23,23 @@ int main(void)
         printf("%s is not exist\n", path);
     }
 
-    s32Length = readAllHexFile(path, &buff);
+    s32Length = readAllHexFile(path, &pBuff);
     if (s32Length > 0)
     {
         printf("readAllHexFile length: %d\n", s32Length);
-        printf("readAllHexFile buff:");
+        printf("readAllHexFile pBuff:");
         for (i = 0; i < s32Length; i++)
         {
             if (i % 0x10 == 0)
             {
                 printf("\n");
             }
-            printf("0x%02x, ", buff[i]);
+            printf("0x%02x, ", pBuff[i]);
         }
         printf("\n");
-        s32WriteLength = writeAllHexFile("test2.bin", buff, s32Length);
+        s32WriteLength = writeAllHexFile("test2.bin", pBuff, s32Length);
         printf("writeAllHexFile length: %d\n", s32WriteLength);
-        freeAllHexFileBuff(&buff);
+        freeAllHexFileBuff(&pBuff);
     }
     else
     {
@@ -49,21 +49,21 @@ int main(void)
     s32Length = getHexFileLength(path);
     printf("getHexFileLength: %d\n", s32Length);
 
-    s32ReadLength = readHexFile(path, buffer, s32Length);
+    s32ReadLength = readHexFile(path, buff, s32Length);
     printf("readHexFile s32ReadLength: %d\n", s32ReadLength);
     if (s32ReadLength > 0)
     {
-        printf("readHexFile buffer:");
+        printf("readHexFile buff:");
         for (i = 0; i < s32ReadLength; i++)
         {
             if (i % 0x10 == 0)
             {
                 printf("\n");
             }
-            printf("0x%02x, ", buffer[i]);
+            printf("0x%02x, ", buff[i]);
         }
         printf("\n");
-        s32WriteLength = writeHexFile("test3.bin", buffer, s32Length);
+        s32WriteLength = writeHexFile("test3.bin", buff, s32Length);
         printf("writeHexFile length: %d\n", s32WriteLength);
     }
     return 0;

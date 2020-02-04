@@ -1,6 +1,8 @@
 #ifndef LY_TYPE_H
 #define LY_TYPE_H
 
+typedef void    VOID;
+typedef char    BOOL;
 typedef char    S8;
 typedef char    CHAR;
 typedef short   S16;
@@ -19,8 +21,5 @@ typedef unsigned long   ULONG;
 
 #define TRUE        1
 #define FALSE       0
-
-#define SUCCESS     0
-#define FAILURE     (-1)
 
 #endif //LY_TYPE_H
