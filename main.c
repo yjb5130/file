@@ -106,5 +106,16 @@ int main(void)
     {
         printf("writeHexFileBytes error!");
     }
+
+    strcpy(buff, "Hello");
+    s32WriteLength = appendHexFileBytes(path, buff, 6);
+    if (s32WriteLength > 0)
+    {
+        printf("appendHexFileBytes ok!\n");
+    }
+    else
+    {
+        printf("appendHexFileBytes error!\n");
+    }
     return 0;
 }

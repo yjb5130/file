@@ -177,3 +177,19 @@ S32 writeHexFileBytes(CHAR* path, UCHAR* buff, U32 offset, U32 length)
     fclose(fd);
     return s32Len;
 }
+
+S32 appendHexFileBytes(CHAR* path, UCHAR* buff, U32 length)
+{
+    FILE * fd = NULL;
+    S32 s32Len = 0;
+    fd = fopen(path, "ab+");
+    if (!fd)
+    {
+        printf("open %s fail\n", path);
+        return -1;
+    }
+
+    s32Len = fwrite(buff, 1, length, fd);
+    fclose(fd);
+    return s32Len;
+}
