@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 #include "ly_type.h"
 
@@ -85,6 +86,25 @@ int main(void)
     else
     {
         printf("writeHexFileByte error!");
+    }
+
+    strcpy(buff, "Hello");
+    s32WriteLength = writeHexFileBytes(path, buff, 0x90, 6);
+    if (s32WriteLength > 0)
+    {
+        s32ReadLength = readHexFileBytes(path, buff, 0x90, 6);
+        if (s32ReadLength > 0)
+        {
+            printf("readHexFileBytes buff: %s\n", buff);
+        }
+        else
+        {
+            printf("readHexFileBytes error!");
+        }
+    }
+    else
+    {
+        printf("writeHexFileBytes error!");
     }
     return 0;
 }

@@ -14,4 +14,6 @@ extern S32 writeHexFile(CHAR* path, UCHAR* buff, U32 length);
 
 extern S32 readHexFileByte(CHAR* path, UCHAR* buff, U32 offset);
 extern S32 writeHexFileByte(CHAR* path, UCHAR* buff, U32 offset);
+extern S32 readHexFileBytes(CHAR* path, UCHAR* buff, U32 offset, U32 length);
+extern S32 writeHexFileBytes(CHAR* path, UCHAR* buff, U32 offset, U32 length);
 #endif //LY_FILE_H
